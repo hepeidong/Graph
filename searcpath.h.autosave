@@ -1,0 +1,45 @@
+#ifndef SEARCPATH_H
+#define SEARCPATH_H
+
+#include "vertex.h"
+
+template<typename Tp>
+class ALGraph : Reference
+{
+public:
+    typedef Tp vertex_t;
+    
+    enum GraphType
+    {
+        DG,     //有向图
+        DN,     //有向网
+        UDG,    //无向图
+        UDN     //无向网
+    };
+    
+    ALGraph(int = 0, GraphType = UDG);
+    ~ALGraph();
+    
+    //通过顶点数据，找到顶点在顶点表中的序号
+    int LocateVertex(const vertex_t& );
+    //取得图中的顶点数目
+    inline int GetNumVertices();
+    //通过序号，找到顶点数据
+    bool GetVertex(int , vertex_t& );
+    //通过序号，设置顶点
+    bool SetVertex(int , const vertex_t& );
+    //插入一个顶点
+    bool InsertVertex(const vertex_t& );
+    //删除一个顶点
+    bool DeleteVertex(const vertex_t& );
+    //插入一条边
+    bool InsertEdge(const vertex_t& , const vertex_t& );
+    //删除一条边
+    bool DeleteEdge(const vertex_t& , const vertex_t& );
+    //通过序号，取得顶点的第一个邻接顶点序号
+    int GetFirstAdjVex(int );
+    //通过序号，取得v
+    int GetNetAdjVex(int v, int w);
+};
+
+#endif // SEARCPATH_H
